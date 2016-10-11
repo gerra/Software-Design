@@ -15,7 +15,7 @@ public class LRUCache<K, V> {
     private int maxSize;
 
     /**
-     *
+     * Construct LRUCache with {@code maxSize} capacity. Every access to LRUCache element, move it to the head of queue
      * @param maxSize maximum number of entries
      */
     public LRUCache(int maxSize) {
@@ -139,6 +139,12 @@ public class LRUCache<K, V> {
     }
 
     /* Protected methods */
+
+    /**
+     * Create object by key. Used for extended classes.
+     * @param key associated key
+     * @return object associated by key or {@code null} if object wasn't created
+     */
     @Nullable
     protected V create(@NotNull K key) {
         assert (key != null);

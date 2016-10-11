@@ -37,5 +37,6 @@ public class Main {
         System.out.println(cache.get("1"));
         System.out.println(cache.get("4"));
         System.out.println(cache.get("5"));
+        cache.resize(-1);
     }
 }
