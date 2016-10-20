@@ -24,7 +24,7 @@ public class Main {
                 System.out.println("_________________________________");
             }
         } catch (Error error) {
-            System.err.println(error.getErrorMessage() + "\n" + error.getBody());
+            System.err.println(error.getMessage() + "\n" + error.getBody());
         }
     }
 }
