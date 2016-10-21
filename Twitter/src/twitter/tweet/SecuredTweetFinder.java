@@ -29,8 +29,12 @@ public class SecuredTweetFinder extends TweetFinder {
 
     @Override
     protected InputStream getTweetListIS(String hashtag) throws IOException, Error {
-        checkAuthorization();
+        return getTweetListIS(hashtag, 15);
+    }
 
+    @Override
+    protected InputStream getTweetListIS(String hashtag, int count) throws IOException, Error {
+        checkAuthorization();
         Map<String, String> headers = new HashMap<>();
         headers.put("Host", "api.twitter.com");
         headers.put("User-Agent", "My Twitter App v1.0.23");
@@ -38,7 +42,9 @@ public class SecuredTweetFinder extends TweetFinder {
         headers.put("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
         String query = "#" + hashtag;
-        String requestUrl = "https://api.twitter.com/1.1/search/tweets.json?q=" + URLEncoder.encode(query, "UTF-8");
+        String requestUrl = "https://api.twitter.com/1.1/search/tweets.json?q=" +
+                URLEncoder.encode(query, "UTF-8") +
+                "&count=" + Integer.toString(count);
         return getUrlReader().sendGetRequestAndGetIS(requestUrl, headers);
     }
 
