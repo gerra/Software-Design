@@ -7,15 +7,16 @@ import twitter.tweet.model.Tweet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public abstract class TweetFinder {
+    private String host;
     private TweetParser tweetParser;
     private URLReader urlReader;
 
-    public TweetFinder(TweetParser tweetParser, URLReader urlReader) {
+    public TweetFinder(String host, TweetParser tweetParser, URLReader urlReader) {
+        this.host = host;
         this.tweetParser = tweetParser;
         this.urlReader = urlReader;
     }
@@ -35,10 +36,9 @@ public abstract class TweetFinder {
         for (Tweet tweet : tweets) {
             Date tweetDate = new Date();
             try {
-                tweetDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZZZ yyyy").parse(tweet.getCreatedAt());
+                tweetDate = Utils.getTwitterDateFormatter().parse(tweet.getCreatedAt());
             } catch (ParseException ignored) {
             }
-//            System.out.println(tweetDate.toString() + " " + tweet.getText());
             long diff = requestDate.getTime() - tweetDate.getTime();
             int diffHour = (int) (diff / 1000 / 60 / 60);
             if (diffHour < n) {
@@ -54,5 +54,9 @@ public abstract class TweetFinder {
 
     protected TweetParser getTweetParser() {
         return tweetParser;
+    }
+
+    protected String getHost() {
+        return host;
     }
 }

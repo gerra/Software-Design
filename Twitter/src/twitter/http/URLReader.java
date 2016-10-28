@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class URLReader {
 
-    public String sendGetRequest(String urlString, Map<String, String> headers) throws IOException, Error {
-        return readFromIS(sendGetRequestAndGetIS(urlString, headers));
-    }
+//    public String sendGetRequest(String urlString, Map<String, String> headers) throws IOException, Error {
+//        return readFromIS(sendGetRequestAndGetIS(urlString, headers));
+//    }
 
     public InputStream sendGetRequestAndGetIS(String urlString, Map<String, String> headers) throws IOException, Error {
         HttpsURLConnection connection = openHttpsConnection(urlString);
@@ -18,9 +18,9 @@ public class URLReader {
         return getISFromConnection(connection);
     }
 
-    public String sendPostRequest(String urlString, Map<String, String> headers, String query) throws IOException, Error {
-        return readFromIS(sendPostRequestAndGetIS(urlString, headers, query));
-    }
+//    public String sendPostRequest(String urlString, Map<String, String> headers, String query) throws IOException, Error {
+//        return readFromIS(sendPostRequestAndGetIS(urlString, headers, query));
+//    }
 
     public InputStream sendPostRequestAndGetIS(String urlString, Map<String, String> headers, String query) throws IOException, Error {
         HttpsURLConnection connection = openHttpsConnection(urlString);

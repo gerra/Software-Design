@@ -5,23 +5,34 @@ import twitter.http.URLReader;
 import twitter.tweet.SecuredTweetFinder;
 import twitter.tweet.TweetFinder;
 import twitter.tweet.TweetParser;
+import twitter.tweet.Utils;
+import twitter.tweet.model.Tweet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Main {
 //    Z2pLalY4eExqMnJKa3g4Z3FSWWNvWTloeDpYcjBjb05Ka210dG1wd1l3a2ZXTlhOamwyT1RacG5FV2l1NnB5YzdQSjFMT2Y5VkxZMA==
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         TweetParser tweetParser = new TweetParser();
         URLReader urlReader = new URLReader();
-        TweetFinder tweetFinder = new SecuredTweetFinder(tweetParser, urlReader, "Z2pLalY4eExqMnJKa3g4Z3FSWWNvWTloeDpYcjBjb05Ka210dG1wd1l3a2ZXTlhOamwyT1RacG5FV2l1NnB5YzdQSjFMT2Y5VkxZMA==");
-        String hashTag = "макулатура";
+        TweetFinder tweetFinder = new SecuredTweetFinder(
+                "api.twitter.com",
+                tweetParser,
+                urlReader,
+                "Z2pLalY4eExqMnJKa3g4Z3FSWWNvWTloeDpYcjBjb05Ka210dG1wd1l3a2ZXTlhOamwyT1RacG5FV2l1NnB5YzdQSjFMT2Y5VkxZMA==");
+        String hashTag = "аффинаж";
         try {
-//            for (Tweet tweet : tweetFinder.getNTweetsByHashtag(hashTag, 20)) {
-//                System.out.println(tweet.getUser().getName() +
-//                        ": " + "https://twitter.com/" + tweet.getUser().getIdStr() + "/status/" + tweet.getIdStr() + "\n" +
-//                        tweet.getText());
-//                System.out.println("_________________________________");
-//            }
+            SimpleDateFormat formatter = new SimpleDateFormat("[dd MMM, hh:mm]");
+            for (Tweet tweet : tweetFinder.getNTweetsByHashtag(hashTag, 100)) {
+                System.out.println(
+                        formatter.format(Utils.getTwitterDateFormatter().parse(tweet.getCreatedAt())) + " " +
+                        tweet.getUser().getName() +
+                        ": " + "https://twitter.com/" + tweet.getUser().getIdStr() + "/status/" + tweet.getIdStr() + "\n" +
+                        tweet.getText());
+                System.out.println("_________________________________");
+            }
             for (int f : tweetFinder.getTweetsFrequency(hashTag, 24)) {
                 System.out.println(f);
             }

@@ -19,12 +19,10 @@ public class SecuredTweetFinder extends TweetFinder {
     private String key;
     private String accessToken;
 
-    public SecuredTweetFinder(TweetParser tweetParser, URLReader urlReader, String key) throws IOException {
-        super(tweetParser, urlReader);
+    public SecuredTweetFinder(String host, TweetParser tweetParser, URLReader urlReader, String key) throws IOException {
+        super(host, tweetParser, urlReader);
         this.key = key;
-
         this.accessToken = null;
-
     }
 
     @Override
@@ -36,13 +34,13 @@ public class SecuredTweetFinder extends TweetFinder {
     protected InputStream getTweetListIS(String hashtag, int count) throws IOException, Error {
         checkAuthorization();
         Map<String, String> headers = new HashMap<>();
-        headers.put("Host", "api.twitter.com");
+        headers.put("Host", getHost());
         headers.put("User-Agent", "My Twitter App v1.0.23");
         headers.put("Authorization", "Bearer " + accessToken);
         headers.put("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
         String query = "#" + hashtag;
-        String requestUrl = "https://api.twitter.com/1.1/search/tweets.json?q=" +
+        String requestUrl = "https://" + getHost() + "/1.1/search/tweets.json?q=" +
                 URLEncoder.encode(query, "UTF-8") +
                 "&count=" + Integer.toString(count);
         return getUrlReader().sendGetRequestAndGetIS(requestUrl, headers);
@@ -51,14 +49,14 @@ public class SecuredTweetFinder extends TweetFinder {
     private void checkAuthorization() throws IOException, Error {
         while (this.accessToken == null) {
             Map<String, String> headers = new HashMap<>();
-            headers.put("Host", "api.twitter.com");
+            headers.put("Host", getHost());
             headers.put("User-Agent", "My Twitter App v1.0.23");
             headers.put("Authorization", "Basic " + key);
             headers.put("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
             try {
                 InputStream registerResponseIS = getUrlReader()
-                        .sendPostRequestAndGetIS("https://api.twitter.com/oauth2/token", headers, "grant_type=client_credentials");
+                        .sendPostRequestAndGetIS("https://" + getHost() + "/oauth2/token", headers, "grant_type=client_credentials");
                 JsonObject jsonBody = (JsonObject) new JsonParser().parse(new InputStreamReader(registerResponseIS));
                 JsonElement jsonAccessToken = jsonBody.get("access_token");
                 if (jsonAccessToken != null) {
