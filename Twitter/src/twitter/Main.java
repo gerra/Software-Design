@@ -1,11 +1,8 @@
 package twitter;
 
 import twitter.http.Error;
-import twitter.http.URLReader;
-import twitter.tweet.SecuredTweetFinder;
-import twitter.tweet.TweetFinder;
-import twitter.tweet.TweetParser;
-import twitter.tweet.Utils;
+import twitter.http.HttpURLReader;
+import twitter.tweet.*;
 import twitter.tweet.model.Tweet;
 
 import java.io.IOException;
@@ -16,12 +13,10 @@ public class Main {
 //    Z2pLalY4eExqMnJKa3g4Z3FSWWNvWTloeDpYcjBjb05Ka210dG1wd1l3a2ZXTlhOamwyT1RacG5FV2l1NnB5YzdQSjFMT2Y5VkxZMA==
     public static void main(String[] args) throws IOException, ParseException {
         TweetParser tweetParser = new TweetParser();
-        URLReader urlReader = new URLReader();
+        HttpURLReader httpUrlReader = new HttpURLReader();
         TweetFinder tweetFinder = new SecuredTweetFinder(
-                "api.twitter.com",
-                tweetParser,
-                urlReader,
-                "Z2pLalY4eExqMnJKa3g4Z3FSWWNvWTloeDpYcjBjb05Ka210dG1wd1l3a2ZXTlhOamwyT1RacG5FV2l1NnB5YzdQSjFMT2Y5VkxZMA==");
+                "https", tweetParser, httpUrlReader, "Z2pLalY4eExqMnJKa3g4Z3FSWWNvWTloeDpYcjBjb05Ka210dG1wd1l3a2ZXTlhOamwyT1RacG5FV2l1NnB5YzdQSjFMT2Y5VkxZMA==", "api.twitter.com"
+        );
         String hashTag = "аффинаж";
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("[dd MMM, hh:mm]");
@@ -33,7 +28,8 @@ public class Main {
                         tweet.getText());
                 System.out.println("_________________________________");
             }
-            for (int f : tweetFinder.getTweetsFrequency(hashTag, 24)) {
+            TweetManager tweetManager = new TweetManager(tweetFinder);
+            for (int f : tweetManager.getTweetsFrequency(hashTag, 24)) {
                 System.out.println(f);
             }
         } catch (Error error) {

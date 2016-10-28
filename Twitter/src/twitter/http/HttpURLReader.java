@@ -1,18 +1,17 @@
 package twitter.http;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.*;
 import java.util.Map;
 
-public class URLReader {
+public class HttpURLReader {
 
 //    public String sendGetRequest(String urlString, Map<String, String> headers) throws IOException, Error {
 //        return readFromIS(sendGetRequestAndGetIS(urlString, headers));
 //    }
 
     public InputStream sendGetRequestAndGetIS(String urlString, Map<String, String> headers) throws IOException, Error {
-        HttpsURLConnection connection = openHttpsConnection(urlString);
+        HttpURLConnection connection = openHttpConnection(urlString);
         setMethod(connection, "GET");
         setHeaders(connection, headers);
         return getISFromConnection(connection);
@@ -23,7 +22,7 @@ public class URLReader {
 //    }
 
     public InputStream sendPostRequestAndGetIS(String urlString, Map<String, String> headers, String query) throws IOException, Error {
-        HttpsURLConnection connection = openHttpsConnection(urlString);
+        HttpURLConnection connection = openHttpConnection(urlString);
         setMethod(connection, "POST");
         setHeaders(connection, headers);
         connection.setDoOutput(true);
@@ -31,12 +30,12 @@ public class URLReader {
             out.write(query);
             out.flush();
         } catch (IOException e) {
-            throw e;
+            throw new UncheckedIOException(e);
         }
         return getISFromConnection(connection);
     }
 
-    private InputStream getISFromConnection(HttpsURLConnection connection) throws IOException, Error {
+    private InputStream getISFromConnection(HttpURLConnection connection) throws IOException, Error {
         int responseCode = connection.getResponseCode();
         if (responseCode >= 200 && responseCode < 300) {
             return connection.getInputStream();
@@ -45,9 +44,9 @@ public class URLReader {
         }
     }
 
-    private String readFromConnection(URLConnection connection) throws IOException {
-        return readFromIS(connection.getInputStream());
-    }
+//    private String readFromConnection(URLConnection connection) throws IOException {
+//        return readFromIS(connection.getInputStream());
+//    }
 
     private String readFromIS(InputStream is) throws IOException {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(is))) {
@@ -61,12 +60,13 @@ public class URLReader {
         }
     }
 
-    private HttpsURLConnection openHttpsConnection(String urlString) throws IOException {
+    private HttpURLConnection openHttpConnection(String urlString) throws IOException {
         URL url = toURL(urlString);
-        try {
-            return (HttpsURLConnection) url.openConnection();
-        } catch (ClassCastException e) {
-            throw new ConnectException("Not HTTPS");
+        URLConnection urlConnection = url.openConnection();
+        if (urlConnection instanceof HttpURLConnection) {
+            return (HttpURLConnection) urlConnection;
+        } else {
+            throw new ConnectException("Not HTTP(S)");
         }
     }
 
@@ -78,6 +78,9 @@ public class URLReader {
     }
 
     private void setHeaders(HttpURLConnection connection, Map<String, String> headers) {
+        if (headers == null) {
+            return;
+        }
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             connection.addRequestProperty(entry.getKey(), entry.getValue());
         }

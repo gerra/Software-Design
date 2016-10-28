@@ -1,0 +1,26 @@
+{
+  "statuses": [
+    {
+      "id": 123456789,
+      "id_str": "123456789",
+      "created_at": "Fri Oct 21 20:57:32 +0000 2016",
+      "text": "I'm super mock text! #mock",
+      "user": {
+        "id": 123456789,
+        "id_str": "123456789",
+        "name": "SuperMegaMock",
+        "location": "St. Petersburg"
+      },
+      "entities": {
+        "hashtags": [
+          {
+            "indices": [
+              1, 5
+            ],
+            "text": "mock"
+          }
+        ]
+      }
+    }
+  ]
+}

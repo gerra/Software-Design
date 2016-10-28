@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import twitter.http.Error;
-import twitter.http.URLReader;
+import twitter.http.HttpURLReader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,15 +19,10 @@ public class SecuredTweetFinder extends TweetFinder {
     private String key;
     private String accessToken;
 
-    public SecuredTweetFinder(String host, TweetParser tweetParser, URLReader urlReader, String key) throws IOException {
-        super(host, tweetParser, urlReader);
+    public SecuredTweetFinder(String protocol, TweetParser tweetParser, HttpURLReader httpUrlReader, String key, String host) {
+        super(protocol, host, tweetParser, httpUrlReader);
         this.key = key;
         this.accessToken = null;
-    }
-
-    @Override
-    protected InputStream getTweetListIS(String hashtag) throws IOException, Error {
-        return getTweetListIS(hashtag, 15);
     }
 
     @Override
@@ -40,10 +35,10 @@ public class SecuredTweetFinder extends TweetFinder {
         headers.put("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
         String query = "#" + hashtag;
-        String requestUrl = "https://" + getHost() + "/1.1/search/tweets.json?q=" +
+        String requestUrl = getProtocol() + "://" + getHost() + "/1.1/search/tweets.json?q=" +
                 URLEncoder.encode(query, "UTF-8") +
                 "&count=" + Integer.toString(count);
-        return getUrlReader().sendGetRequestAndGetIS(requestUrl, headers);
+        return getHttpUrlReader().sendGetRequestAndGetIS(requestUrl, headers);
     }
 
     private void checkAuthorization() throws IOException, Error {
@@ -55,8 +50,8 @@ public class SecuredTweetFinder extends TweetFinder {
             headers.put("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
             try {
-                InputStream registerResponseIS = getUrlReader()
-                        .sendPostRequestAndGetIS("https://" + getHost() + "/oauth2/token", headers, "grant_type=client_credentials");
+                InputStream registerResponseIS = getHttpUrlReader()
+                        .sendPostRequestAndGetIS(getProtocol() + "://" + getHost() + "/oauth2/token", headers, "grant_type=client_credentials");
                 JsonObject jsonBody = (JsonObject) new JsonParser().parse(new InputStreamReader(registerResponseIS));
                 JsonElement jsonAccessToken = jsonBody.get("access_token");
                 if (jsonAccessToken != null) {
