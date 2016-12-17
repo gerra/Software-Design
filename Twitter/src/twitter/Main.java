@@ -30,8 +30,9 @@ public class Main {
             }
             TweetManager tweetManager = new TweetManager(tweetFinder);
             for (int f : tweetManager.getTweetsFrequency(hashTag, 24)) {
-                System.out.println(f);
+                System.out.print(f + " ");
             }
+            System.out.println();
         } catch (Error error) {
             System.err.println(error.getMessage() + "\n" + error.getBody());
         }
