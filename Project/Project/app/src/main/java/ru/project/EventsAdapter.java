@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.project.model.Event;
+import ru.project.net.response.Event;
 import ru.project.viewholders.BaseViewHolder;
 import ru.project.viewholders.EventViewHolder;
 import ru.project.viewholders.ProgressBarViewHolder;
@@ -24,10 +24,10 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == EVENT_VIEW_TYPE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, null, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, parent, false);
             return new EventViewHolder(view);
         } else if (viewType == PROGRESS_BAR_VIEW_TYPE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, null, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, parent, false);
             return new ProgressBarViewHolder(view);
         } else {
             throw new IllegalArgumentException("Unknown viewType " + viewType);
@@ -38,6 +38,7 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         if (holder instanceof EventViewHolder) {
             Event event = events.get(position);
+            ((EventViewHolder) holder).setData(event);
         } else if (holder instanceof ProgressBarViewHolder) {
 
         }

@@ -11,13 +11,13 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import ru.project.model.Event;
 import ru.project.EventsAdapter;
-import ru.project.mvp.EventsPresenter;
 import ru.project.EventsPresenterImpl;
-import ru.project.mvp.EventsView;
 import ru.project.R;
 import ru.project.data.EventsSupplier;
+import ru.project.mvp.EventsPresenter;
+import ru.project.mvp.EventsView;
+import ru.project.net.response.Event;
 
 public class EventsFragment extends Fragment implements EventsView {
     public static final String TAG = EventsFragment.class.getSimpleName();

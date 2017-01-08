@@ -1,16 +1,15 @@
 package ru.project.net;
 
-import java.util.List;
-
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import ru.project.model.Event;
+import ru.project.net.response.Event;
+import ru.project.net.response.EventsResponse;
 import rx.Observable;
 
 public interface TimePadService {
     @GET("v1/events")
-    Observable<List<Event>> getEvents(
+    Observable<EventsResponse> getEvents(
             @Query("limit") int limit,
             @Query("skip") int skip,
             @Query("cities") String cities);

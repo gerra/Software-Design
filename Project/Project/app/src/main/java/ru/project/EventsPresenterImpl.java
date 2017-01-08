@@ -2,10 +2,10 @@ package ru.project;
 
 import java.util.List;
 
-import ru.project.model.Event;
 import ru.project.mvp.EventsModel;
 import ru.project.mvp.EventsPresenter;
 import ru.project.mvp.EventsView;
+import ru.project.net.response.Event;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;

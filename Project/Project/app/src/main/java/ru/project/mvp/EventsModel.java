@@ -2,7 +2,7 @@ package ru.project.mvp;
 
 import java.util.List;
 
-import ru.project.model.Event;
+import ru.project.net.response.Event;
 import rx.Observable;
 
 public interface EventsModel {

@@ -2,9 +2,9 @@ package ru.project.data;
 
 import java.util.List;
 
-import ru.project.model.Event;
 import ru.project.mvp.EventsModel;
 import ru.project.net.TimePadLoader;
+import ru.project.net.response.Event;
 import rx.Observable;
 
 public class EventsSupplier implements EventsModel {

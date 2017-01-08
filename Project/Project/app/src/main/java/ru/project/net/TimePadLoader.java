@@ -7,8 +7,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import ru.project.model.Event;
 import ru.project.mvp.EventsModel;
+import ru.project.net.response.Event;
+import ru.project.net.response.EventsResponse;
 import rx.Observable;
 
 public class TimePadLoader implements EventsModel {
@@ -40,6 +41,6 @@ public class TimePadLoader implements EventsModel {
 
     @Override
     public Observable<List<Event>> getEvents(String cities, int count, int offset) {
-        return timePadService.getEvents(count, offset, cities);
+        return timePadService.getEvents(count, offset, cities).map(EventsResponse::getEvents);
     }
 }
