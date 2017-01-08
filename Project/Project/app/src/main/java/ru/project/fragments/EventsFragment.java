@@ -17,7 +17,7 @@ import ru.project.mvp.EventsPresenter;
 import ru.project.EventsPresenterImpl;
 import ru.project.mvp.EventsView;
 import ru.project.R;
-import ru.project.data.RestClient;
+import ru.project.data.EventsSupplier;
 
 public class EventsFragment extends Fragment implements EventsView {
     public static final String TAG = EventsFragment.class.getSimpleName();
@@ -50,8 +50,8 @@ public class EventsFragment extends Fragment implements EventsView {
         eventsListView.setAdapter(eventsAdapter);
         eventsListView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        eventsPresenter = new EventsPresenterImpl(this, RestClient.getInstance());
-        eventsPresenter.loadEvents();
+        eventsPresenter = new EventsPresenterImpl(this, EventsSupplier.getInstance());
+        eventsPresenter.loadEvents("Санкт-Петербург", 20, 0);
     }
 
     @Override

@@ -9,6 +9,7 @@ import ru.project.mvp.EventsView;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class EventsPresenterImpl implements EventsPresenter {
     private EventsView eventsView;
@@ -33,10 +34,11 @@ public class EventsPresenterImpl implements EventsPresenter {
     }
 
     @Override
-    public void loadEvents() {
+    public void loadEvents(String cities, int count, int offset) {
         eventsView.showProgress();
         eventsSubscription = eventsModel
-                .getEvents()
+                .getEvents(cities, count, offset)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Event>>() {
             @Override
