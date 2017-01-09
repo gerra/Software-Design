@@ -4,7 +4,7 @@ package ru.project.net.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PosterImage {
+public class LogoImage {
 
     @SerializedName("default_url")
     @Expose
@@ -14,7 +14,7 @@ public class PosterImage {
     private String uploadcareUrl;
 
     public String getDefaultUrl() {
-        return generateHttpsPrefix(defaultUrl);
+        return defaultUrl;
     }
 
     public void setDefaultUrl(String defaultUrl) {
@@ -22,17 +22,11 @@ public class PosterImage {
     }
 
     public String getUploadcareUrl() {
-        return generateHttpsPrefix(uploadcareUrl);
+        return uploadcareUrl;
     }
 
     public void setUploadcareUrl(String uploadcareUrl) {
         this.uploadcareUrl = uploadcareUrl;
     }
 
-    private static String generateHttpsPrefix(String url) {
-        if (url != null && !url.startsWith("http")) {
-            url = "https:" + url;
-        }
-        return url;
-    }
 }

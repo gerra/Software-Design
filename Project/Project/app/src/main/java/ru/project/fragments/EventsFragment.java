@@ -13,10 +13,12 @@ import java.util.List;
 
 import ru.project.EventsAdapter;
 import ru.project.EventsPresenterImpl;
+import ru.project.OnEventClickListener;
 import ru.project.R;
 import ru.project.data.EventsSupplier;
-import ru.project.mvp.EventsPresenter;
-import ru.project.mvp.EventsView;
+import ru.project.mvp.events.EventsPresenter;
+import ru.project.mvp.events.EventsView;
+import ru.project.net.EventsRequest;
 import ru.project.net.response.Event;
 
 public class EventsFragment extends Fragment implements EventsView {
@@ -28,10 +30,11 @@ public class EventsFragment extends Fragment implements EventsView {
     private RecyclerView eventsListView;
     private EventsAdapter eventsAdapter;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        eventsAdapter = new EventsAdapter();
+        eventsAdapter = new EventsAdapter((OnEventClickListener) getActivity());
     }
 
     @Nullable
@@ -51,7 +54,13 @@ public class EventsFragment extends Fragment implements EventsView {
         eventsListView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         eventsPresenter = new EventsPresenterImpl(this, EventsSupplier.getInstance());
-        eventsPresenter.loadEvents("Санкт-Петербург", 20, 0);
+        EventsRequest eventsRequest = new EventsRequest.EventsRequestBuilder()
+                .setCities("Санкт-Петербург")
+                .setCount(20)
+                .setOffset(0)
+                .setSortBy(true, "starts_at")
+                .build();
+        eventsPresenter.loadEvents(eventsRequest);
     }
 
     @Override
@@ -75,5 +84,10 @@ public class EventsFragment extends Fragment implements EventsView {
     @Override
     public void showEvents(List<Event> events) {
         eventsAdapter.setEvents(events);
+    }
+
+    @Override
+    public void addEvents(List<Event> events, int offset) {
+        eventsAdapter.addEvents(events, offset);
     }
 }

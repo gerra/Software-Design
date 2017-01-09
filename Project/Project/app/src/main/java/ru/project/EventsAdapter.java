@@ -21,6 +21,12 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<Event> events = new ArrayList<>();
     private boolean showProgressBar = false;
 
+    private OnEventClickListener onEventClickListener;
+
+    public EventsAdapter(OnEventClickListener onEventClickListener) {
+        this.onEventClickListener = onEventClickListener;
+    }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == EVENT_VIEW_TYPE) {
@@ -39,6 +45,8 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         if (holder instanceof EventViewHolder) {
             Event event = events.get(position);
             ((EventViewHolder) holder).setData(event);
+            ((EventViewHolder) holder).itemView
+                    .setOnClickListener(v -> onEventClickListener.onEventClick(event));
         } else if (holder instanceof ProgressBarViewHolder) {
 
         }
@@ -60,7 +68,12 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.showProgressBar = showProgressBar;
     }
 
-    public void addEvents(List<Event> events) {
+    public void addEvents(List<Event> events, int offset) {
+        if (offset < this.events.size()) {
+            int oldSize = this.events.size();
+            this.events.subList(offset, oldSize).clear();
+            notifyItemRangeRemoved(offset, oldSize - offset);
+        }
         int oldSize = this.events.size();
         this.events.addAll(events);
         notifyItemRangeInserted(oldSize, events.size());

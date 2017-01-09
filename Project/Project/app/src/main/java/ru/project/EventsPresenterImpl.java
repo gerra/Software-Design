@@ -2,9 +2,10 @@ package ru.project;
 
 import java.util.List;
 
-import ru.project.mvp.EventsModel;
-import ru.project.mvp.EventsPresenter;
-import ru.project.mvp.EventsView;
+import ru.project.mvp.events.EventsModel;
+import ru.project.mvp.events.EventsPresenter;
+import ru.project.mvp.events.EventsView;
+import ru.project.net.EventsRequest;
 import ru.project.net.response.Event;
 import rx.Subscriber;
 import rx.Subscription;
@@ -34,10 +35,10 @@ public class EventsPresenterImpl implements EventsPresenter {
     }
 
     @Override
-    public void loadEvents(String cities, int count, int offset) {
+    public void loadEvents(EventsRequest eventsRequest) {
         eventsView.showProgress();
         eventsSubscription = eventsModel
-                .getEvents(cities, count, offset)
+                .getEvents(eventsRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Event>>() {
@@ -53,8 +54,13 @@ public class EventsPresenterImpl implements EventsPresenter {
 
             @Override
             public void onNext(List<Event> events) {
-                eventsView.showEvents(events);
+                eventsView.addEvents(events, eventsRequest.getOffset());
             }
         });
+    }
+
+    @Override
+    public void onEventClick(Event event) {
+
     }
 }
