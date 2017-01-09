@@ -24,16 +24,19 @@ import ru.project.net.response.EventInfo;
 public class EventInfoFragment extends Fragment implements EventInfoView {
     public static final String TAG = EventInfoFragment.class.getSimpleName();
     private static final String EVENT_ID_KEY = "EVENT_ID";
+    private static final String EVENT_NAME_KEY = "EVENT_NAME";
 
-    public static EventInfoFragment factory(int eventId) {
+    public static EventInfoFragment factory(int eventId, String eventName) {
         Bundle args = new Bundle();
         args.putInt(EVENT_ID_KEY, eventId);
+        args.putString(EVENT_NAME_KEY, eventName);
         EventInfoFragment eventInfoFragment = new EventInfoFragment();
         eventInfoFragment.setArguments(args);
         return eventInfoFragment;
     }
 
     private int eventId;
+    private String eventName;
 
     private View progressView;
     private View contentView;
@@ -47,6 +50,7 @@ public class EventInfoFragment extends Fragment implements EventInfoView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         eventId = getArguments().getInt(EVENT_ID_KEY);
+        eventName = getArguments().getString(EVENT_NAME_KEY);
     }
 
     @Nullable
@@ -67,6 +71,12 @@ public class EventInfoFragment extends Fragment implements EventInfoView {
 
         eventInfoPresenter = new EventInfoPresenterImpl(this, EventsSupplier.getInstance());
         eventInfoPresenter.loadEventInfo(eventId);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(eventName);
     }
 
     @Override

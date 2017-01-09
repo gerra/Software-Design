@@ -25,6 +25,9 @@ import ru.project.net.response.Event;
 
 public class EventsFragment extends Fragment implements EventsView {
     public static final String TAG = EventsFragment.class.getSimpleName();
+    public static final String CITIES_KEY = "CITIES";
+
+    private String cities;
 
     private EventsPresenter eventsPresenter;
 
@@ -35,10 +38,19 @@ public class EventsFragment extends Fragment implements EventsView {
 
     private EventsRequest lastSuccessfulRequest;
 
+    public static EventsFragment factory(String cities) {
+        EventsFragment eventsFragment = new EventsFragment();
+        Bundle args = new Bundle();
+        args.putString(CITIES_KEY, cities);
+        eventsFragment.setArguments(args);
+        return eventsFragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         eventsAdapter = new EventsAdapter((OnEventClickListener) getActivity());
+        cities = getArguments().getString(CITIES_KEY);
     }
 
     @Nullable
@@ -71,7 +83,7 @@ public class EventsFragment extends Fragment implements EventsView {
 
         if (lastSuccessfulRequest == null) {
             EventsRequest eventsRequest = new EventsRequest.Builder()
-                    .setCities("Санкт-Петербург")
+                    .setCities(cities)
                     .setCount(20)
                     .setOffset(0)
                     .setSortBy(true, "starts_at")
@@ -82,7 +94,11 @@ public class EventsFragment extends Fragment implements EventsView {
         }
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(cities);
+    }
 
     @Override
     public void onDestroyView() {
