@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import ru.project.EventsAdapter;
 import ru.project.EventsPresenterImpl;
+import ru.project.OnBottomScrollListener;
 import ru.project.OnEventClickListener;
 import ru.project.R;
 import ru.project.data.EventsSupplier;
@@ -29,7 +31,9 @@ public class EventsFragment extends Fragment implements EventsView {
     private View progressBarView;
     private RecyclerView eventsListView;
     private EventsAdapter eventsAdapter;
+    private OnBottomScrollListener onBottomScrollListener;
 
+    private EventsRequest lastSuccessfulRequest;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,30 +51,48 @@ public class EventsFragment extends Fragment implements EventsView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Log.d(TAG, "onViewCreated()");
+
         eventsListView = (RecyclerView) view.findViewById(R.id.eventsList);
         progressBarView = view.findViewById(R.id.progressBar);
 
         eventsListView.setAdapter(eventsAdapter);
         eventsListView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        onBottomScrollListener = new OnBottomScrollListener(5, layoutManagerItemCount -> {
+            eventsAdapter.setShowProgressBar(true);
+            if (lastSuccessfulRequest != null) {
+                eventsPresenter.onBottom(eventsAdapter.getEventsCount(), lastSuccessfulRequest);
+            }
+        });
+        eventsListView.addOnScrollListener(onBottomScrollListener);
+
         eventsPresenter = new EventsPresenterImpl(this, EventsSupplier.getInstance());
-        EventsRequest eventsRequest = new EventsRequest.EventsRequestBuilder()
-                .setCities("Санкт-Петербург")
-                .setCount(20)
-                .setOffset(0)
-                .setSortBy(true, "starts_at")
-                .build();
-        eventsPresenter.loadEvents(eventsRequest);
+
+        if (lastSuccessfulRequest == null) {
+            EventsRequest eventsRequest = new EventsRequest.Builder()
+                    .setCities("Санкт-Петербург")
+                    .setCount(20)
+                    .setOffset(0)
+                    .setSortBy(true, "starts_at")
+                    .build();
+            eventsPresenter.loadEvents(eventsRequest);
+        } else {
+            hideProgress();
+        }
     }
+
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         eventsPresenter.onDestroy();
+        eventsListView.removeOnScrollListener(onBottomScrollListener);
     }
 
     @Override
-    public void showProgress() {
+    public void showMainProgressBar() {
         progressBarView.setVisibility(View.VISIBLE);
         eventsListView.setVisibility(View.GONE);
     }
@@ -87,7 +109,8 @@ public class EventsFragment extends Fragment implements EventsView {
     }
 
     @Override
-    public void addEvents(List<Event> events, int offset) {
-        eventsAdapter.addEvents(events, offset);
+    public void addEvents(List<Event> events, EventsRequest eventsRequest) {
+        lastSuccessfulRequest = eventsRequest;
+        eventsAdapter.addEvents(events);
     }
 }

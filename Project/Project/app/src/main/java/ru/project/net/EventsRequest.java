@@ -12,25 +12,30 @@ public class EventsRequest extends HashMap<String, Object> {
         }
     }
 
-    public static class EventsRequestBuilder {
+    public static class Builder {
         private EventsRequest eventsRequest = new EventsRequest();
 
-        public EventsRequestBuilder setCount(int count) {
+        public Builder copyFrom(EventsRequest copyFrom) {
+            eventsRequest.putAll(copyFrom);
+            return this;
+        }
+
+        public Builder setCount(int count) {
             eventsRequest.put("limit", count);
             return this;
         }
 
-        public EventsRequestBuilder setOffset(int offset) {
+        public Builder setOffset(int offset) {
             eventsRequest.put("skip", offset);
             return this;
         }
 
-        public EventsRequestBuilder setCities(String cities) {
+        public Builder setCities(String cities) {
             eventsRequest.put("cities", cities);
             return this;
         }
 
-        public EventsRequestBuilder setSortBy(boolean ascendant, String sortBy) {
+        public Builder setSortBy(boolean ascendant, String sortBy) {
             if (ascendant) {
                 eventsRequest.put("sort", "+" + sortBy);
             } else {

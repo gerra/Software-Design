@@ -33,11 +33,19 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, parent, false);
             return new EventViewHolder(view);
         } else if (viewType == PROGRESS_BAR_VIEW_TYPE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.progress_bar_view, parent, false);
             return new ProgressBarViewHolder(view);
         } else {
             throw new IllegalArgumentException("Unknown viewType " + viewType);
         }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position < events.size()) {
+            return EVENT_VIEW_TYPE;
+        }
+        return PROGRESS_BAR_VIEW_TYPE;
     }
 
     @Override
@@ -57,6 +65,10 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         return events.size() + (showProgressBar ? 1 : 0);
     }
 
+    public int getEventsCount() {
+        return events.size();
+    }
+
     public void setEvents(List<Event> events) {
         if (events != null) {
             this.events = events;
@@ -65,10 +77,16 @@ public class EventsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public void setShowProgressBar(boolean showProgressBar) {
+        boolean updateUI = this.showProgressBar != showProgressBar;
         this.showProgressBar = showProgressBar;
+        if (updateUI) {
+            notifyItemRemoved(events.size());
+        }
     }
 
-    public void addEvents(List<Event> events, int offset) {
+    public void addEvents(List<Event> events) {
+        setShowProgressBar(false); // TODO: it is KOSTbl/\b
+        int offset = this.events.size(); // TODO: it is KOSTbl/\b
         if (offset < this.events.size()) {
             int oldSize = this.events.size();
             this.events.subList(offset, oldSize).clear();

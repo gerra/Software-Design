@@ -93,9 +93,13 @@ public class EventInfoFragment extends Fragment implements EventInfoView {
                 .load(eventInfo.getPosterImage().getUploadcareUrl())
                 .fit()
                 .into(eventPhotoView);
-        eventNameView.setText(eventInfo.getName());
+
+        String name = eventInfo.getName();
+        name = name.replaceAll("&quot;", "\"");
+        eventNameView.setText(name);
 
         String description = eventInfo.getDescriptionHtml();
+        description = description.replaceAll("&quot;", "'");
         if (Build.VERSION.SDK_INT >= 24) {
             eventDescriptionView.setText(Html.fromHtml(description, Html.FROM_HTML_MODE_LEGACY));
         } else {
