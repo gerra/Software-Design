@@ -29,4 +29,12 @@ public class Category {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Category) {
+            Category other = (Category) o;
+            return other.getId() == id && other.getName().equals(name);
+        }
+        return false;
+    }
 }
