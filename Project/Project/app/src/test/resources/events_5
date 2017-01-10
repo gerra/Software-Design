@@ -1,0 +1,90 @@
+{
+  "total": 3786,
+  "values": [
+    {
+      "id": 424598,
+      "starts_at": "2017-02-15T23:00:00+0300",
+      "name": "\" AC\/DC \" Дмитрий dr. nick Казанцев - крутит винил и рассказывает истории!",
+      "url": "https:\/\/bourbon-street.timepad.ru\/event\/424598\/",
+      "poster_image": {
+        "default_url": "https:\/\/ucare.timepad.ru\/9da9382c-1947-4703-92bb-c4ab5ed61c4c\/-\/preview\/100x800\/",
+        "uploadcare_url": "\/\/ucare.timepad.ru\/9da9382c-1947-4703-92bb-c4ab5ed61c4c\/"
+      },
+      "categories": [
+        {
+          "id": 460,
+          "name": "Концерты"
+        }
+      ],
+      "moderation_status": "featured"
+    },
+    {
+      "id": 424594,
+      "starts_at": "2017-02-01T21:00:00+0300",
+      "name": "\" Leonard Cohen \" Дмитрий dr. nick Казанцев - крутит винил и рассказывает истории!",
+      "url": "https:\/\/bourbon-street.timepad.ru\/event\/424594\/",
+      "poster_image": {
+        "default_url": "https:\/\/ucare.timepad.ru\/992267c3-31f4-4003-aafc-abdf098b07e9\/-\/preview\/100x800\/",
+        "uploadcare_url": "\/\/ucare.timepad.ru\/992267c3-31f4-4003-aafc-abdf098b07e9\/"
+      },
+      "categories": [
+        {
+          "id": 460,
+          "name": "Концерты"
+        }
+      ],
+      "moderation_status": "featured"
+    },
+    {
+      "id": 424596,
+      "starts_at": "2017-02-08T21:00:00+0300",
+      "name": "\" Pink Floyd 77-79 \" Дмитрий dr. nick Казанцев - крутит винил и рассказывает истории!",
+      "url": "https:\/\/bourbon-street.timepad.ru\/event\/424596\/",
+      "poster_image": {
+        "default_url": "https:\/\/ucare.timepad.ru\/27bbc9f3-5cb9-4cfb-aadc-e64ed76f56e9\/-\/preview\/100x800\/",
+        "uploadcare_url": "\/\/ucare.timepad.ru\/27bbc9f3-5cb9-4cfb-aadc-e64ed76f56e9\/"
+      },
+      "categories": [
+        {
+          "id": 460,
+          "name": "Концерты"
+        }
+      ],
+      "moderation_status": "featured"
+    },
+    {
+      "id": 424587,
+      "starts_at": "2017-01-11T21:00:00+0300",
+      "name": "\" Steely Dan \" Дмитрий dr. nick Казанцев - крутит винил и рассказывает истории!",
+      "url": "https:\/\/bourbon-street.timepad.ru\/event\/424587\/",
+      "poster_image": {
+        "default_url": "https:\/\/ucare.timepad.ru\/2457d9ad-d269-4c7a-9599-d57f08536b7e\/-\/preview\/100x800\/",
+        "uploadcare_url": "\/\/ucare.timepad.ru\/2457d9ad-d269-4c7a-9599-d57f08536b7e\/"
+      },
+      "categories": [
+        {
+          "id": 460,
+          "name": "Концерты"
+        }
+      ],
+      "moderation_status": "featured"
+    },
+    {
+      "id": 424591,
+      "starts_at": "2017-01-18T21:00:00+0300",
+      "name": "\" The Temptations \" Дмитрий dr. nick Казанцев - крутит винил и рассказывает истории!",
+      "url": "https:\/\/bourbon-street.timepad.ru\/event\/424591\/",
+      "poster_image": {
+        "default_url": "https:\/\/ucare.timepad.ru\/c27fbd3a-4915-4d24-aa57-255e943171ff\/-\/preview\/100x800\/",
+        "uploadcare_url": "\/\/ucare.timepad.ru\/c27fbd3a-4915-4d24-aa57-255e943171ff\/"
+      },
+      "categories": [
+        {
+          "id": 460,
+          "name": "Концерты"
+        }
+      ],
+      "moderation_status": "featured"
+    }
+  ]
+}

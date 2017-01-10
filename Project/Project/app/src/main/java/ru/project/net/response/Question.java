@@ -84,4 +84,36 @@ public class Question {
         this.meta = meta;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Question)) return false;
+
+        Question question = (Question) o;
+
+        if (isMandatory != question.isMandatory) return false;
+        if (isForEveryVisitor != question.isForEveryVisitor) return false;
+        if (getFieldId() != null ? !getFieldId().equals(question.getFieldId()) : question.getFieldId() != null)
+            return false;
+        if (getName() != null ? !getName().equals(question.getName()) : question.getName() != null)
+            return false;
+        if (getComment() != null ? !getComment().equals(question.getComment()) : question.getComment() != null)
+            return false;
+        if (getType() != null ? !getType().equals(question.getType()) : question.getType() != null)
+            return false;
+        return getMeta() != null ? getMeta().equals(question.getMeta()) : question.getMeta() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getFieldId() != null ? getFieldId().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getComment() != null ? getComment().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (isMandatory ? 1 : 0);
+        result = 31 * result + (isForEveryVisitor ? 1 : 0);
+        result = 31 * result + (getMeta() != null ? getMeta().hashCode() : 0);
+        return result;
+    }
 }

@@ -51,4 +51,26 @@ public class Meta {
         this.block = block;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Meta)) return false;
+
+        Meta meta = (Meta) o;
+
+        if (isBlocked() != meta.isBlocked()) return false;
+        if (isMandatory() != meta.isMandatory()) return false;
+        if (isBlock() != meta.isBlock()) return false;
+        return getComment() != null ? getComment().equals(meta.getComment()) : meta.getComment() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getComment() != null ? getComment().hashCode() : 0;
+        result = 31 * result + (isBlocked() ? 1 : 0);
+        result = 31 * result + (isMandatory() ? 1 : 0);
+        result = 31 * result + (isBlock() ? 1 : 0);
+        return result;
+    }
 }

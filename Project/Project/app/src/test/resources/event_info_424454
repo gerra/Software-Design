@@ -1,0 +1,141 @@
+{
+  "id": 424454,
+  "created_at": "2016-12-22T13:39:23+0300",
+  "starts_at": "2017-01-21T20:30:00+0300",
+  "name": "&quot;A New Generetion&quot; с Трио Михаила Кистанова (Acoustic Blues)",
+  "description_short": "",
+  "description_html": "<p><span style=\"color:rgb(0,0,0);font-size:15.36px;\">JAM Club приглашает всех на ежемесячный проект Михаила Кистанова \"A New Generation: Acoustic Blues\" - классика корневого блюза в лучших традициях!<\/span><br \/><br \/><span style=\"color:rgb(0,0,0);font-size:15.36px;\">Каждый раз новые гости, только молодые и только лучшие артисты жанра!<\/span><\/p>",
+  "url": "https:\/\/jamclub.timepad.ru\/event\/424454\/",
+  "poster_image": {
+    "default_url": "https:\/\/ucare.timepad.ru\/02f87791-d324-458a-8989-5d3f84aec604\/-\/preview\/308x600\/-\/format\/png\/poster_event_424454.png",
+    "uploadcare_url": "\/\/ucare.timepad.ru\/02f87791-d324-458a-8989-5d3f84aec604\/"
+  },
+  "ad_partner_percent": 0,
+  "locale": "ru",
+  "location": {
+    "country": "Россия",
+    "city": "Москва",
+    "address": "Сретенка 11",
+    "coordinates": [
+      "55.768304",
+      "37.631523"
+    ]
+  },
+  "organization": {
+    "id": 60421,
+    "name": "ООО «Джем Клуб Андрея Макаревича»",
+    "description_html": "Друзья, на протяжении последних лет я пытался представить себе — каким должен быть клуб для музыки, которую я люблю, чтобы мне самому хотелось там находиться: и слушать и играть. Очень надеюсь, что у нас получается именно такое место и что наши с вами взгляды на то, каким это место должно быть, совпадут.\r\nВесьма волнуюсь и – до встречи!\r\nАндрей Макаревич",
+    "url": "https:\/\/jamclub.timepad.ru\/",
+    "logo_image": {
+      "default_url": "https:\/\/ucare.timepad.ru\/0753c34e-6401-498b-92e9-622bcfc94873\/-\/preview\/308x600\/-\/format\/png\/logo_org_60421.png",
+      "uploadcare_url": "\/\/ucare.timepad.ru\/0753c34e-6401-498b-92e9-622bcfc94873\/"
+    },
+    "subdomain": "jamclub"
+  },
+  "categories": [
+    {
+      "id": 460,
+      "name": "Концерты"
+    }
+  ],
+  "tickets_limit": 0,
+  "ticket_types": [
+    {
+      "id": 805745,
+      "name": "Входной билет",
+      "buy_amount_min": 1,
+      "buy_amount_max": 30,
+      "price": 700,
+      "is_promocode_locked": false,
+      "remaining": 17,
+      "sale_ends_at": "2017-01-21T20:30:00+0300",
+      "is_active": true,
+      "ad_partner_profit": 0,
+      "send_personal_links": true,
+      "status": "ok"
+    }
+  ],
+  "questions": [
+    {
+      "field_id": "name",
+      "name": "Имя",
+      "comment": "",
+      "type": "text",
+      "is_mandatory": true,
+      "is_for_every_visitor": false,
+      "meta": {
+        "comment": "",
+        "blocked": true,
+        "mandatory": true
+      }
+    },
+    {
+      "field_id": "surname",
+      "name": "Фамилия",
+      "comment": "",
+      "type": "text",
+      "is_mandatory": true,
+      "is_for_every_visitor": false,
+      "meta": {
+        "comment": "",
+        "blocked": true,
+        "mandatory": true
+      }
+    },
+    {
+      "field_id": "mail",
+      "name": "E-mail",
+      "comment": "",
+      "type": "text",
+      "is_mandatory": true,
+      "is_for_every_visitor": false,
+      "meta": {
+        "comment": "",
+        "blocked": true,
+        "mandatory": true
+      }
+    },
+    {
+      "field_id": "phone",
+      "name": "Номер телефона",
+      "comment": "",
+      "type": "phone",
+      "is_mandatory": true,
+      "is_for_every_visitor": false,
+      "meta": {
+        "mandatory": true
+      }
+    },
+    {
+      "field_id": "subscribe_email",
+      "name": "Я хочу получать анонсы событий этого организатора по электронной почте",
+      "type": "check",
+      "is_mandatory": false,
+      "is_for_every_visitor": false,
+      "meta": {
+        "block": true
+      }
+    }
+  ],
+  "widgets": {
+    "custom": {
+      "code_html": "<script type=\"text\/javascript\" defer=\"defer\" charset=\"UTF-8\" data-timepad-widget-v2=\"event_register\" src=\"https:\/\/timepad.ru\/js\/tpwf\/loader\/min\/loader.js\">\n\t(function(){return {\"event\":{\"id\":\"424454\"},\"bindEvents\":{\"preRoute\":\"TWFpreRouteHandler\"},\"isInEventPage\":true}; })();\n<\/script>"
+    },
+    "button": {
+      "code_html": "<script type=\"text\/javascript\" defer=\"defer\" charset=\"UTF-8\" data-timepad-widget-v2=\"event_register\" src=\"https:\/\/timepad.ru\/js\/tpwf\/loader\/min\/loader.js\">\n\t(function(){return {\"event\":{\"id\":\"424454\"},\"bindEvents\":{\"preRoute\":\"TWFpreRouteHandler\"},\"isInEventPage\":true,\"iframe\":{\"height\":0},\"hidePreloading\":true,\"initialRoute\":\"button\"}; })();\n<\/script>"
+    }
+  },
+  "properties": [
+    "organization_letter_checkbox"
+  ],
+  "moderation_status": "not_moderated",
+  "access_status": "public",
+  "registration_data": {
+    "price_max": 700,
+    "price_min": 700,
+    "sale_ends_at": "2017-01-21T20:30:00+0300",
+    "tickets_total": 3,
+    "is_registration_open": true
+  },
+  "is_sending_free_tickets": false
+}

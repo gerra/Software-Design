@@ -86,4 +86,37 @@ public class Event {
         this.moderationStatus = moderationStatus;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event)) return false;
+
+        Event event = (Event) o;
+
+        if (getId() != event.getId()) return false;
+        if (getStartsAt() != null ? !getStartsAt().equals(event.getStartsAt()) : event.getStartsAt() != null)
+            return false;
+        if (getName() != null ? !getName().equals(event.getName()) : event.getName() != null)
+            return false;
+        if (getUrl() != null ? !getUrl().equals(event.getUrl()) : event.getUrl() != null)
+            return false;
+        if (getPosterImage() != null ? !getPosterImage().equals(event.getPosterImage()) : event.getPosterImage() != null)
+            return false;
+        if (getCategories() != null ? !getCategories().equals(event.getCategories()) : event.getCategories() != null)
+            return false;
+        return getModerationStatus() != null ? getModerationStatus().equals(event.getModerationStatus()) : event.getModerationStatus() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getStartsAt() != null ? getStartsAt().hashCode() : 0);
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getUrl() != null ? getUrl().hashCode() : 0);
+        result = 31 * result + (getPosterImage() != null ? getPosterImage().hashCode() : 0);
+        result = 31 * result + (getCategories() != null ? getCategories().hashCode() : 0);
+        result = 31 * result + (getModerationStatus() != null ? getModerationStatus().hashCode() : 0);
+        return result;
+    }
 }

@@ -128,4 +128,42 @@ public class TicketType {
         this.status = status;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TicketType)) return false;
+
+        TicketType that = (TicketType) o;
+
+        if (getId() != that.getId()) return false;
+        if (getBuyAmountMin() != that.getBuyAmountMin()) return false;
+        if (getBuyAmountMax() != that.getBuyAmountMax()) return false;
+        if (getPrice() != that.getPrice()) return false;
+        if (isPromocodeLocked != that.isPromocodeLocked) return false;
+        if (isActive != that.isActive) return false;
+        if (getAdPartnerProfit() != that.getAdPartnerProfit()) return false;
+        if (isSendPersonalLinks() != that.isSendPersonalLinks()) return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null)
+            return false;
+        if (getSaleEndsAt() != null ? !getSaleEndsAt().equals(that.getSaleEndsAt()) : that.getSaleEndsAt() != null)
+            return false;
+        return getStatus() != null ? getStatus().equals(that.getStatus()) : that.getStatus() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + getBuyAmountMin();
+        result = 31 * result + getBuyAmountMax();
+        result = 31 * result + getPrice();
+        result = 31 * result + (isPromocodeLocked ? 1 : 0);
+        result = 31 * result + (getSaleEndsAt() != null ? getSaleEndsAt().hashCode() : 0);
+        result = 31 * result + (isActive ? 1 : 0);
+        result = 31 * result + getAdPartnerProfit();
+        result = 31 * result + (isSendPersonalLinks() ? 1 : 0);
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
+        return result;
+    }
 }

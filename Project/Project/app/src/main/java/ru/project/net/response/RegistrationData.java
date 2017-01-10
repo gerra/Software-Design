@@ -62,4 +62,28 @@ public class RegistrationData {
         this.isRegistrationOpen = isRegistrationOpen;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RegistrationData)) return false;
+
+        RegistrationData that = (RegistrationData) o;
+
+        if (getPriceMax() != that.getPriceMax()) return false;
+        if (getPriceMin() != that.getPriceMin()) return false;
+        if (getTicketsTotal() != that.getTicketsTotal()) return false;
+        if (isRegistrationOpen != that.isRegistrationOpen) return false;
+        return getSaleEndsAt() != null ? getSaleEndsAt().equals(that.getSaleEndsAt()) : that.getSaleEndsAt() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getPriceMax();
+        result = 31 * result + getPriceMin();
+        result = 31 * result + (getSaleEndsAt() != null ? getSaleEndsAt().hashCode() : 0);
+        result = 31 * result + getTicketsTotal();
+        result = 31 * result + (isRegistrationOpen ? 1 : 0);
+        return result;
+    }
 }

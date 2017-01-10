@@ -18,4 +18,19 @@ public class Custom {
         this.codeHtml = codeHtml;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Custom)) return false;
+
+        Custom custom = (Custom) o;
+
+        return getCodeHtml() != null ? getCodeHtml().equals(custom.getCodeHtml()) : custom.getCodeHtml() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getCodeHtml() != null ? getCodeHtml().hashCode() : 0;
+    }
 }

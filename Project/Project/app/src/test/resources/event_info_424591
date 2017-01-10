@@ -1,0 +1,113 @@
+{
+  "id": 424591,
+  "created_at": "2016-12-22T17:33:12+0300",
+  "starts_at": "2017-01-18T21:00:00+0300",
+  "ends_at": "2017-01-18T23:00:00+0300",
+  "name": "&quot; The Temptations &quot; Дмитрий dr. nick Казанцев - крутит винил и рассказывает истории!",
+  "description_short": "Известный Московский гитарист и певец, начавший свою бурную концертную деятельность еще в далеком 1991 году приглашает на свой очередной теплый вечер в Бурбон Стрит, С 21-00 Дмитрий будет крутить виниловые пластинки из личной коллекции и рассказывать занимательные истории. Стиль музыки: блюз, рок, фолк, соул, фанк, кантри, ритм-н-блюз. Вход свободный!",
+  "description_html": "",
+  "url": "https:\/\/bourbon-street.timepad.ru\/event\/424591\/",
+  "poster_image": {
+    "default_url": "https:\/\/ucare.timepad.ru\/c27fbd3a-4915-4d24-aa57-255e943171ff\/-\/preview\/308x600\/-\/format\/png\/poster_event_424591.png",
+    "uploadcare_url": "\/\/ucare.timepad.ru\/c27fbd3a-4915-4d24-aa57-255e943171ff\/"
+  },
+  "ad_partner_percent": 0,
+  "locale": "ru",
+  "location": {
+    "country": "Россия",
+    "city": "Москва",
+    "address": "Москва, Большой Златоустинский пер д 7 стр 1",
+    "coordinates": [
+      "55.758742",
+      "37.632691"
+    ]
+  },
+  "organization": {
+    "id": 75332,
+    "name": "Bourbon Street",
+    "url": "https:\/\/bourbon-street.timepad.ru\/",
+    "logo_image": {
+      "default_url": "https:\/\/ucare.timepad.ru\/7af55692-e880-425d-ada4-ff22cd7a654a\/-\/preview\/308x600\/-\/format\/png\/logo_org_75332.png",
+      "uploadcare_url": "\/\/ucare.timepad.ru\/7af55692-e880-425d-ada4-ff22cd7a654a\/"
+    },
+    "subdomain": "bourbon-street"
+  },
+  "categories": [
+    {
+      "id": 460,
+      "name": "Концерты"
+    }
+  ],
+  "tickets_limit": 0,
+  "ticket_types": [],
+  "questions": [
+    {
+      "field_id": "mail",
+      "name": "E-mail",
+      "comment": "",
+      "type": "text",
+      "is_mandatory": true,
+      "is_for_every_visitor": false,
+      "meta": {
+        "comment": "",
+        "blocked": true,
+        "mandatory": true
+      }
+    },
+    {
+      "field_id": "surname",
+      "name": "Фамилия",
+      "comment": "",
+      "type": "text",
+      "is_mandatory": true,
+      "is_for_every_visitor": false,
+      "meta": {
+        "comment": "",
+        "blocked": true,
+        "mandatory": true
+      }
+    },
+    {
+      "field_id": "name",
+      "name": "Имя",
+      "comment": "",
+      "type": "text",
+      "is_mandatory": true,
+      "is_for_every_visitor": false,
+      "meta": {
+        "comment": "",
+        "blocked": true,
+        "mandatory": true
+      }
+    },
+    {
+      "field_id": "subscribe_digest",
+      "name": "Подписаться на Дайджест интересных событий TimePad",
+      "type": "check",
+      "is_mandatory": false,
+      "is_for_every_visitor": false,
+      "meta": {
+        "block": true
+      }
+    }
+  ],
+  "widgets": {
+    "custom": {
+      "code_html": "<script type=\"text\/javascript\" defer=\"defer\" charset=\"UTF-8\" data-timepad-widget-v2=\"event_register\" src=\"https:\/\/timepad.ru\/js\/tpwf\/loader\/min\/loader.js\">\n\t(function(){return {\"event\":{\"id\":\"424591\"},\"bindEvents\":{\"preRoute\":\"TWFpreRouteHandler\"},\"isInEventPage\":true}; })();\n<\/script>"
+    },
+    "button": {
+      "code_html": "<script type=\"text\/javascript\" defer=\"defer\" charset=\"UTF-8\" data-timepad-widget-v2=\"event_register\" src=\"https:\/\/timepad.ru\/js\/tpwf\/loader\/min\/loader.js\">\n\t(function(){return {\"event\":{\"id\":\"424591\"},\"bindEvents\":{\"preRoute\":\"TWFpreRouteHandler\"},\"isInEventPage\":true,\"iframe\":{\"height\":0},\"hidePreloading\":true,\"initialRoute\":\"button\"}; })();\n<\/script>"
+    }
+  },
+  "properties": [
+    "timepad_letter_checkbox"
+  ],
+  "moderation_status": "not_moderated",
+  "access_status": "public",
+  "registration_data": {
+    "sale_ends_at": "2017-01-10T06:17:27+0300",
+    "tickets_total": 0,
+    "is_registration_open": false
+  },
+  "is_sending_free_tickets": false
+}

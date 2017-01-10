@@ -29,4 +29,23 @@ public class Widgets {
         this.button = button;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Widgets)) return false;
+
+        Widgets widgets = (Widgets) o;
+
+        if (getCustom() != null ? !getCustom().equals(widgets.getCustom()) : widgets.getCustom() != null)
+            return false;
+        return getButton() != null ? getButton().equals(widgets.getButton()) : widgets.getButton() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCustom() != null ? getCustom().hashCode() : 0;
+        result = 31 * result + (getButton() != null ? getButton().hashCode() : 0);
+        return result;
+    }
 }

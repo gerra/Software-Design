@@ -35,4 +35,24 @@ public class PosterImage {
         }
         return url;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PosterImage)) return false;
+
+        PosterImage that = (PosterImage) o;
+
+        if (getDefaultUrl() != null ? !getDefaultUrl().equals(that.getDefaultUrl()) : that.getDefaultUrl() != null)
+            return false;
+        return getUploadcareUrl() != null ? getUploadcareUrl().equals(that.getUploadcareUrl()) : that.getUploadcareUrl() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getDefaultUrl() != null ? getDefaultUrl().hashCode() : 0;
+        result = 31 * result + (getUploadcareUrl() != null ? getUploadcareUrl().hashCode() : 0);
+        return result;
+    }
 }

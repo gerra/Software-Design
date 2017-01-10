@@ -37,4 +37,11 @@ public class Category {
         }
         return false;
     }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        return result;
+    }
 }

@@ -29,4 +29,23 @@ public class LogoImage {
         this.uploadcareUrl = uploadcareUrl;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LogoImage)) return false;
+
+        LogoImage logoImage = (LogoImage) o;
+
+        if (getDefaultUrl() != null ? !getDefaultUrl().equals(logoImage.getDefaultUrl()) : logoImage.getDefaultUrl() != null)
+            return false;
+        return getUploadcareUrl() != null ? getUploadcareUrl().equals(logoImage.getUploadcareUrl()) : logoImage.getUploadcareUrl() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getDefaultUrl() != null ? getDefaultUrl().hashCode() : 0;
+        result = 31 * result + (getUploadcareUrl() != null ? getUploadcareUrl().hashCode() : 0);
+        return result;
+    }
 }

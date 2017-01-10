@@ -18,4 +18,19 @@ public class Button {
         this.codeHtml = codeHtml;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Button)) return false;
+
+        Button button = (Button) o;
+
+        return getCodeHtml() != null ? getCodeHtml().equals(button.getCodeHtml()) : button.getCodeHtml() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getCodeHtml() != null ? getCodeHtml().hashCode() : 0;
+    }
 }
