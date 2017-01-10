@@ -1,18 +1,18 @@
 # Software-Design
 # Project
-Загрузить события Санкт-Петербурга в таймлайн
-Изменить город
-Посмотреть информацию о событии
-Паттерны:
-MVP
-Builder
-Singleton
-Listener
-Adapter
-ViewHolder
-Технологии:
-rx
-retrofit
-recyclerview
-junit
+Загрузить события Санкт-Петербурга в таймлайн</br>
+Изменить город</br>
+Посмотреть информацию о событии</br>
+Паттерны:</br>
+MVP</br>
+Builder</br>
+Singleton</br>
+Listener</br>
+Adapter</br>
+ViewHolder</br>
+Технологии:</br>
+rx</br>
+retrofit</br>
+recyclerview</br>
+junit</br>
 DI
