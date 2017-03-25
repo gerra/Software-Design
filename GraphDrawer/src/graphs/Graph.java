@@ -108,12 +108,12 @@ public abstract class Graph {
         drawingApi.drawLine(from, to);
 
         // draw arrow
-        for (double arrowDegree : new double[] {-30, 30}) {
+        for (double arrowDegree : new double[] {-20, 20}) {
             angle = Math.toRadians(arrowDegree);
             double cos = Math.cos(angle);
             double sin = Math.sin(angle);
-            double x1p = ((x1 - x2) * cos - (y1 - y2) * sin) / 15 + x2;
-            double y1p = ((x1 - x2) * sin + (y1 - y2) * cos) / 15 + y2;
+            double x1p = ((x1 - x2) * cos - (y1 - y2) * sin) / 20 + x2;
+            double y1p = ((x1 - x2) * sin + (y1 - y2) * cos) / 20 + y2;
             drawingApi.drawLine(new Point2D.Double(x2, y2), new Point2D.Double(x1p, y1p));
         }
     }

@@ -24,7 +24,6 @@ public class Main {
             return;
         }
         InputStream is = new ByteArrayInputStream(args[0].getBytes());
-//        TokenizerOld tokenizer = new TokenizerOld(is);
         Tokenizer tokenizer = new Tokenizer(is);
         List<Token> infixTokens = tokenizer.extractTokens();
         ParserVisitor parserVisitor = new ParserVisitor(infixTokens);
